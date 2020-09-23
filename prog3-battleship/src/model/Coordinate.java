@@ -2,6 +2,8 @@
 
 package model;
 
+import java.util.Arrays;
+
 class Coordinate
 {
 	private int[] components;
@@ -35,15 +37,27 @@ class Coordinate
       
          return -1;
     }
-	public final boolean equals(final Object obj){
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(components);
+		return result;
+	}
 
-        Coordinate c = (Coordinate)obj;
-        
-        for (int i=0;i<2;i++)
-            if (this.get(i) != c.get(i)) 
-                return false;
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coordinate other = (Coordinate) obj;
+		if (!Arrays.equals(components, other.components))
+			return false;
+		return true;
+	}
 	public final String toString(){
         StringBuilder concatenation = new StringBuilder("(");
         
