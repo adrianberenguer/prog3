@@ -1,5 +1,7 @@
 //ADRIÁN BERENGUER AGULLÓ 74445262N
 
+package model;
+
 class Coordinate
 {
 	private int[] components;
