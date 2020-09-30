@@ -2,64 +2,78 @@
 package model;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 
-
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
+
 /**
  * The Class Coordinate.
  */
 public class Coordinate
 {
 	
+
 	/** The components. */
 	private int[] components;
     
+
     /**
      * Sets the.
      *
-     * component the the value
-     * prints error exception if its out of range
+     * @param component the component
+     * @param value the value
      */
-    protected 	void set(int component, int value){
-        if (component>=0 && component<2) {
+    protected 	void set(int component, int value)
+    {
+        if (component>=0 && component<2) 
+        {
             components[component] = value;
         }
          else
             System.err.println("Error in Coordinate.set, component " + component + " is out of range");
     }
 
+
 	/**
 	 * Instantiates a new coordinate.
-	 * It is the constructor
-	 * parameter x the x
-	 * parameter y the y
+	 *
+	 * @param x the x
+	 * @param y the y
 	 */
-	public Coordinate(int x, int y){
+	public Coordinate(int x, int y)
+	{
         components = new int[2];
         components[0]=x;
         components[1]=y;
     }
 	
+
 	/**
 	 * Instantiates a new coordinate.
-	 * Copy constructor
-	 * parameter c the c
+	 *
+	 * @param c the c
 	 */
-	public Coordinate(Coordinate c){
+	public Coordinate(Coordinate c)
+	{
         components = new int[2];
          
         for (int i=0;i<components.length;i++)
            this.set(i, c.get(i));
     }
 
+
 	/**
 	 * Gets the.
-	 * prints an error when there is an exception
-	 * parameter component the component
-	 * returns the int
+	 *
+	 * @param component the component
+	 * @return the int
 	 */
-	public int get(int component){
-        if (component>=0 && component<2) {
+	public int get(int component)
+	{
+        if (component>=0 && component<2) 
+         {
             return components[component];
          }
          else
@@ -68,27 +82,31 @@ public class Coordinate
          return -1;
     }
 	
+
 	/**
 	 * Hash code.
 	 *
-	 * returns the result 
+	 * @return the int
 	 */
 	@Override
-	public int hashCode() {
+	public int hashCode() 
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(components);
 		return result;
 	}
 
+
 	/**
 	 * Equals.
 	 *
-	 * parameter obj the obj
-	 * returns true, if successful
+	 * @param obj the obj
+	 * @return true, if successful
 	 */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -101,12 +119,14 @@ public class Coordinate
 		return true;
 	}
 	
+
 	/**
 	 * To string.
 	 *
-	 * returns the string
+	 * @return the string
 	 */
-	public final String toString(){
+	public final String toString()
+	{
         StringBuilder concatenation = new StringBuilder("(");
         
         for (int i=0;i<2;i++)
@@ -119,13 +139,15 @@ public class Coordinate
         return concatenation.toString();
     }
 	
+
 	/**
 	 * Adds the.
 	 *
 	 * @param c the c
 	 * @return the coordinate
 	 */
-	public final Coordinate add(Coordinate c){
+	public final Coordinate add(Coordinate c)
+	{
         Coordinate new_c = new Coordinate(this);
         
         for (int i=0; i<2; i++)
@@ -134,13 +156,15 @@ public class Coordinate
         return new_c;
     }
 	
+
 	/**
 	 * Substract.
 	 *
 	 * @param c the c
 	 * @return the coordinate
 	 */
-	public final Coordinate substract(Coordinate c){
+	public final Coordinate subtract(Coordinate c)
+	{
         Coordinate new_c = new Coordinate(this);
         
         for (int i=0; i<2; i++)
@@ -148,6 +172,28 @@ public class Coordinate
                      
         return new_c; 
     }
-
+	
+	public Set<Coordinate> adjacentCoordinates()
+	{
+		Set<Coordinate> adjCoor= new HashSet<Coordinate>();
+		
+		for(int i=-1;i<2;i++)
+		{
+			for(int j=-1;j<2;j++)
+			{
+				if(!(i==0 && j==0))
+				{
+					adjCoor.add(this.add(new Coordinate(i,j)));
+				}
+			}
+		}
+		
+		return adjCoor;
+	}
+	
+	public Coordinate copy() 
+	{
+		return new Coordinate(this);
+	}
     
 }
