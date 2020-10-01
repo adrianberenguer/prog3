@@ -25,7 +25,7 @@ public class Coordinate
      * @param component the component
      * @param value the value
      */
-    protected 	void set(int component, int value)
+    protected void set(int component, int value)
     {
         if (component>=0 && component<2) 
         {
@@ -181,7 +181,7 @@ public class Coordinate
 		{
 			for(int j=-1;j<2;j++)
 			{
-				if(!(i==0 && j==0))
+				if(i!=0 && j!=0)
 				{
 					adjCoor.add(this.add(new Coordinate(i,j)));
 				}

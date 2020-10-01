@@ -174,7 +174,7 @@ public class CoordinatePreTest {
 		int sumy = caux1.get(1);
 		for (int i=0; i<DIM-2; i++) {	
 		   caux2 = caux1;
-		   caux1 = caux1.substract(lcoor.get(i+1));	  
+		   caux1 = caux1.subtract(lcoor.get(i+1));	  
 		   sumx -= (vcoor[i+1]);
 		   sumy -= (vcoor[i+2]);
 		   assertEquals(caux1.get(0),sumx);
