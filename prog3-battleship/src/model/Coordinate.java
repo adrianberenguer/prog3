@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -173,6 +172,11 @@ public class Coordinate
         return new_c; 
     }
 	
+	/**
+	 * Adjacent coordinates.
+	 *
+	 * @return the sets the
+	 */
 	public Set<Coordinate> adjacentCoordinates()
 	{
 		Set<Coordinate> adjCoor= new HashSet<Coordinate>();
@@ -181,7 +185,7 @@ public class Coordinate
 		{
 			for(int j=-1;j<2;j++)
 			{
-				if(i!=0 && j!=0)
+				if((i==0 && j==0) == false)
 				{
 					adjCoor.add(this.add(new Coordinate(i,j)));
 				}
@@ -191,6 +195,11 @@ public class Coordinate
 		return adjCoor;
 	}
 	
+	/**
+	 * Copy.
+	 *
+	 * @return the coordinate
+	 */
 	public Coordinate copy() 
 	{
 		return new Coordinate(this);

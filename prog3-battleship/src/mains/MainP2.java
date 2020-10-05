@@ -1,43 +1,35 @@
 package mains;
 
-import java.util.ArrayList;
+import model.Board;
 import model.Coordinate;
+import model.Orientation;
+import model.Ship;
 
 public class MainP2 {
 
 	public static void main(String[] args) {
 		
-        Coordinate c1 = new Coordinate(0,0);
-	    Coordinate c2 = new Coordinate(10,10);
-	    Coordinate c3 = new Coordinate(4,3);
-	    Coordinate c4 = new Coordinate(5,15);
-	    Coordinate c5 = new Coordinate(c4);
-	    Coordinate c6 = new Coordinate(2,5);
-
-	    System.out.println(c1);
-	    System.out.println(c2);
-	    System.out.println(c3);
-	    System.out.println(c4);
-	    System.out.println(c5);
-	    System.out.println(c6);
-
-
-        Coordinate sumada = c3.add(c6);
-	    System.out.println(c3+"+"+c6+"="+sumada);
-
-        Coordinate[] v = new Coordinate[5];
-	    for (int i=0; i<5; i++) {
-	        v[i]= new Coordinate(i,4-i);
-	    }
-	    
-	    for (int i=0; i<5; i++) {
-	        System.out.println(v[i].get(0)+","+v[i].get(1));
-	    }
-
-	    ArrayList<Coordinate> v2 = new ArrayList<Coordinate>();
-	    for (int i=0; i<8; i++) {
-	                v2.add(new Coordinate(i, i));
-	                System.out.println(v2.get(i));
-	    }
+		Coordinate c1 = new Coordinate(7,5);
+		Coordinate c2 = new Coordinate(-6,3);
+		
+		Coordinate c3 = c1.add(c2);
+		
+		System.out.println("c2.x="+c2.get(0)+", c2.y="+c2.get(1));
+		System.out.println("c3="+c3.toString());
+		
+		System.out.println("c1.equals(c3)="+c1.equals(c3));
+		
+		
+		Board b = new Board(10);
+		Ship portaaviones = new Ship(Orientation.EAST,'P',"Dijkstra");
+		Ship submarino = new Ship(Orientation.NORTH,'s',"Boole");
+		Ship destructor = new Ship(Orientation.EAST,'d',"Knuth");
+		
+		b.addShip(portaaviones,new Coordinate(0,0));
+		b.addShip(submarino,new Coordinate(5,5));
+		b.addShip(destructor,new Coordinate(2,3));
+		
+		System.out.println(b);
+		System.out.println(portaaviones);
 	}
 }
