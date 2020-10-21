@@ -198,7 +198,7 @@ public class Board
 			System.err.println();
 			return CellStatus.WATER;
 		}
-		seen.add(c);
+		seen.add(c.copy());
 		for(Coordinate c1 : coordinates)
 		{
 			

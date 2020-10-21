@@ -10,7 +10,7 @@ import java.util.HashSet;
 /**
  * The Class Coordinate.
  */
-public class Coordinate
+public abstract class Coordinate
 {
 	
 
@@ -26,12 +26,15 @@ public class Coordinate
      */
     protected void set(int component, int value)
     {
-        if (component>=0 && component<2) 
-        {
-            components[component] = value;
-        }
-         else
-            System.err.println("Error in Coordinate.set, component " + component + " is out of range");
+   
+	        if (component>=0 && component<2) 
+	        {
+	            components[component] = value;
+	        }
+	         else
+	            System.err.println("Error in Coordinate.set, component " + component + " is out of range");
+    	
+    
     }
 
 
@@ -41,11 +44,10 @@ public class Coordinate
 	 * @param x the x
 	 * @param y the y
 	 */
-	public Coordinate(int x, int y)
+	protected Coordinate(int dim)
 	{
-        components = new int[2];
-        components[0]=x;
-        components[1]=y;
+        components = new int[dim];
+        	
     }
 	
 
@@ -54,7 +56,7 @@ public class Coordinate
 	 *
 	 * @param c the c
 	 */
-	public Coordinate(Coordinate c)
+	protected Coordinate(Coordinate c)
 	{
         components = new int[2];
          
@@ -117,28 +119,7 @@ public class Coordinate
 			return false;
 		return true;
 	}
-	
-
-	/**
-	 * To string.
-	 *
-	 * @return the string
-	 */
-	public final String toString()
-	{
-        StringBuilder concatenation = new StringBuilder("(");
-        
-        for (int i=0;i<2;i++)
-        {
-           concatenation.append(this.get(i));
-           if (i<2-1) // no es la última
-              concatenation.append(", ");
-        }
-        concatenation.append(")");
-        return concatenation.toString();
-    }
-	
-
+		
 	/**
 	 * Adds the.
 	 *
@@ -147,11 +128,16 @@ public class Coordinate
 	 */
 	public final Coordinate add(Coordinate c)
 	{
-        Coordinate new_c = new Coordinate(this);
+        Coordinate new_c = copy();
         
-        for (int i=0; i<2; i++)
-           new_c.set(i, new_c.get(i) + c.get(i));
-                     
+        for (int i=0; i<this.components.length; i++) 
+        {
+        	if(i<c.components.length)
+        	{
+                new_c.set(i, new_c.get(i) + c.get(i));
+        	}
+        }             
+        
         return new_c;
     }
 	
@@ -164,7 +150,7 @@ public class Coordinate
 	 */
 	public final Coordinate subtract(Coordinate c)
 	{
-        Coordinate new_c = new Coordinate(this);
+        Coordinate new_c = copy();
         
         for (int i=0; i<2; i++)
            new_c.set(i, new_c.get(i) - c.get(i));
@@ -177,32 +163,14 @@ public class Coordinate
 	 *
 	 * @return the sets the
 	 */
-	public Set<Coordinate> adjacentCoordinates()
-	{
-		Set<Coordinate> adjCoor= new HashSet<Coordinate>();
-		
-		for(int i=-1;i<2;i++)
-		{
-			for(int j=-1;j<2;j++)
-			{
-				if((i==0 && j==0) == false)
-				{
-					adjCoor.add(this.add(new Coordinate(i,j)));
-				}
-			}
-		}
-		
-		return adjCoor;
-	}
+	public abstract Set<Coordinate> adjacentCoordinates();
+
 	
 	/**
 	 * Copy.
 	 *
 	 * @return the coordinate
 	 */
-	public Coordinate copy() 
-	{
-		return new Coordinate(this);
-	}
+	public abstract Coordinate copy();
     
 }
