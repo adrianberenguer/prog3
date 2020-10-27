@@ -2,36 +2,31 @@ package model;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import model.aircraft.Coordinate3D;
+import model.ship.Coordinate2D;
 
-//@author ADRIÁN BERENGUER AGULLÓ, 74445262N
+// TODO: Auto-generated Javadoc
 /**
  * The Class CoordinatePreTest.
  */
-/* Para realizar los test se sugiere usar métodos de la librería de junit como:
- * assertEquals, assertNotEquals, assertSame; assertNotSame, assertTrue; assertFalse
- */
 public class CoordinatePreTest {
 	
-    /** The vcoordinates. */
-    List vcoordinates = new ArrayList<int[]>();
-    
-    /** The vcoor. */
-    int []vcoor= {0,0,-70,-2,20}; //Para crear Coordinates
-    
-    /** The dim. */
-    final int DIM = vcoor.length;
-    
-    /** The lcoor. */
-    List<Coordinate> lcoor;
-    
+	/** The cd 3. */
+	Coordinate cd2, cd3;
+
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
 	/**
 	 * Sets the up.
 	 *
@@ -39,206 +34,114 @@ public class CoordinatePreTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		lcoor = new ArrayList<Coordinate>();
-		//Se crean las Coordinates (0,0),(0,-70), (-70,-2),(-2,20);
-		for (int i=0; i<DIM-1; i++) {
-			lcoor.add(new Coordinate(vcoor[i],vcoor[i+1]));
-		}
-		
+		cd2 = new Coordinate2D(-10,7);
+		cd3 = new Coordinate3D(15, 8, -2);
 	}
 
+	/* Comprueba set y get modificando algunas de las Coordinates creadas en setUp() 
+	 */
 	/**
-	 * Test hash code.
+	 * Test set get.
 	 */
-	/* Se comprueba que cuando dos Coordinate son iguales, el resultado del hash ha 
-	 * de ser el mismo. 
-	 * Si los Coordinate son distintos el hashCode puede ser igual o no.
-	 */
+	//TODO
 	@Test
-	public void testHashCode() {
-		Coordinate c1 = lcoor.get(2);
-		Coordinate c2 = new Coordinate(c1);
+	public void testSetGet() {
 		
-		assertEquals (c1,c2);
-		assertEquals (c1.hashCode(), c2.hashCode());
-	}
-
-	/**
-	 * Test coordinate constructor.
-	 */
-	/* Se comprueba que el Constructor funciona bien. Para ello se analiza que las 
-	 * las componentes  '0' y '1' de cada Coordinate creada en el setUp() son las 
-	 * correctas.
-	 */
-	@Test
-	public void testCoordinateConstructor() {
-		int j=0;
-		for (int i=0; i<DIM-1; i++) {			
-			assertEquals("x",vcoor[i],lcoor.get(j).get(0));
-			assertEquals("y",vcoor[i+1],lcoor.get(j).get(1));
-			j++;
-		}
-	}
-
-	/**
-	 * Test coordinate constructor copy.
-	 */
-	/* Comprobar que el constructor de copia crea una nueva Coordinate con
-	 * los mismos valores que las componentes respectivas del Coordinate copiado.
-	 * Y eso se hace para cada Coordinate creada en setUp();
-	 */
-	@Test
-	public void testCoordinateConstructorCopy() {
-		//fail("Realiza el tes del constructor copia");
-		Coordinate c1;
-		Coordinate c2;
-		for(int i=0;i<lcoor.size();i++) {
-			c1=lcoor.get(i);
-			c2= new Coordinate(c1);
-			assertEquals(c2,c1);
-		}
-	}
-
-	/**
-	 * Test get set.
-	 */
-	/* Se comprueba que el método get(int) para cada componente de una Coordinate 
-	 * funciona correctamente.
-	 * Modificar los valores de las componentes de la Coordinate anterior con el 
-	 * método set(int, int) y comprobar con get(int) que los valores de sus 
-	 * componentes han cambiado a dichos valores.
-	 */
-	@Test
-	public void testGetSet() {
-		Coordinate c = lcoor.get(2);
-		assertEquals("x==-70", -70, c.get(0));
-		assertEquals("x==-2", -2, c.get(1));
+		assertEquals(cd2.get(0),-10);
+		assertEquals(cd3.get(2),-2);
+		cd2.set(0, 3);
+		assertEquals(cd2.get(0),3);
 		
-		c.set(0, 18);
-		c.set(1, 16);
-		assertEquals("x==18", 18, c.get(0));
-		assertEquals("x==16", 16, c.get(1));
-		
-		//fail ("Modifica los valores de los componentes de 'c' y comprueba que se han modificado");
+		cd3.set(1, 6);
+		assertEquals(cd3.get(1),6);
+		//fail("Realiza la comprobación del correcto funcionamiento de set y get");
 	}
-
+	
+	//TODO
 	/**
-	 * Test add.
+	 * Test set illegal argument exception.
 	 */
-	/* Se suman las Coordinate creadas en el setUp() y comprueba, conforme se van 
-	 * sumando, que los valores de sus componentes van tomando los valores correctos 
-	 * y que el Coordinate que devuelve no es el mismo que el Coordinate que invoca 
-	 * al método.
+	/* Comprueba que set lanza IllegalArgumentException cuando el componente
+	 * no es correcto
 	 */
-	@Test  //{0,0,-70,-2,20}
-	public void testAdd() {
-		Coordinate caux1 = lcoor.get(0);
-		Coordinate caux2;
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetIllegalArgumentException() {
 		
-		int sumx = caux1.get(0);
-		int sumy = caux1.get(1);
-		for (int i=0; i<DIM-2; i++) {	
-		   caux2 = caux1;
-		   caux1 = caux1.add(lcoor.get(i+1));	  
-		   sumx += (vcoor[i+1]);
-		   sumy += (vcoor[i+2]);
-		   assertEquals(caux1.get(0),sumx);
-		   assertEquals(caux1.get(1),sumy);
-		   assertNotEquals(caux1,caux2);
-		   
-		   /*Usa aquí los métodos de junit adecuados para comprobar:
-		    * - que sumx y sumy son iguales a los componentes '0' y '1' 
-		    *   respectivamente de caux1.
-		    * - que el Coordinate que devuelve 'add' no es el mismo que
-	        *   el Coordinate que invocó al método.
-		    */
-		   //fail ("Realiza las comprobaciones sugeridas anteriormente");
-		}
+		cd2.set(4, 5);
+				
+		//fail("Realiza el test SetIllegalArgumentException");
 	}
-
+	
+	//TODO
 	/**
-	 * Test subtract.
+	 * Test get illegal argument exception.
 	 */
-	/* Resta las Coordinate creadas en el setUp() y comprueba, conforme se van restando, 
-	 * que los valores de sus componentes van tomando los valores correctos y que el 
-	 * Coordinate que devuelve no es el mismo que el Coordinate que invoca 
-	 * al método.
+	/* Comprueba que get lanza IllegalArgumentException cuando el componente
+	 * no es correcto
 	 */
-	@Test
-	public void testSubtract() {
-		//fail("Realiza la resta de los Coordinate propuesta");
-		Coordinate caux1 = lcoor.get(0);
-		Coordinate caux2;
+	@Test(expected=IllegalArgumentException.class)
+	public void testGetIllegalArgumentException() {
 		
-		int sumx = caux1.get(0);
-		int sumy = caux1.get(1);
-		for (int i=0; i<DIM-2; i++) {	
-		   caux2 = caux1;
-		   caux1 = caux1.subtract(lcoor.get(i+1));	  
-		   sumx -= (vcoor[i+1]);
-		   sumy -= (vcoor[i+2]);
-		   assertEquals(caux1.get(0),sumx);
-		   assertEquals(caux1.get(1),sumy);
-		   assertNotEquals(caux1,caux2);
-		   
-
-		}		
+		cd2.get(5);
+		
+		//fail("Realiza el test SetIllegalArgumentException");
 	}
-
 	
 	/**
-	 * Test to string.
+	 * Test add 2 dand 3 D.
 	 */
-	/* Se comprueba, para el método toString(), que las Coordinate creadas en el setUp() 
-	 * tienen el formato correcto.
-	 */
+	/* Comprobación de la sumas entre coordenadas de dimensiones distintas*/
 	@Test
-	public void testToString() {
-		assertEquals ("(0, 0)",lcoor.get(0).toString());
-		assertEquals ("(0, -70)",lcoor.get(1).toString());
-		assertEquals ("(-70, -2)",lcoor.get(2).toString());
-		assertEquals ("(-2, 20)",lcoor.get(3).toString());
+	public void testAdd2Dand3D() {
+		Coordinate aux2d = new Coordinate2D (5,15);
+		Coordinate aux3d = new Coordinate3D (5,15,-2);
+		assertEquals ("c2+c3", aux2d, cd2.add(cd3));
+		assertEquals ("c3+c2", aux3d, cd3.add(cd2));
+		assertNotEquals ("aux2d!=cd2", aux2d, cd2);
+		assertNotEquals ("aux3d!=cd3", aux2d, cd3);
 	}
-
+	
 	/**
-	 * Test equals object.
+	 * Test add null pointer exception.
 	 */
-	/* Se toma una Coordinate y se comprueba todas las posibles condiciones bajo 
-	 * las cuales, nuestra función equals() devuelve true o false
-	 */
-	@Test
-	public void testEqualsObject() {
-		Object obj = new String("(0, 0)");
-		Coordinate c = lcoor.get(0);
-		// equals() devuelve falso cuando le paso null
-		assertFalse(c.equals(null));
-		// equals() devuelve falso cuando le paso un objeto que no es de tipo Coordinate
-		assertFalse(c.equals(obj));
-		
-		Coordinate c2;
-		for(int i=0;i<lcoor.size()-1;i++) {
-			c=lcoor.get(i);
-			c2=lcoor.get(i++);
-			if(c.equals(c2)) {
-				assertTrue(c.equals(c2));
-			}
-			else {
-				assertFalse(c.equals(c2));
-			}
-			if(c.equals(c)) {
-				assertTrue(c.equals(c));
-			}
-
+	//TODO
+	@Test(expected=NullPointerException.class)
+	public void testAddNullPointerException() {
+		try {
+		   cd2.add(null);
+		   fail ("Error: No se lanzó la excepción NullPointerException");
+		} catch (NullPointerException e) {
+			cd3.add(null);
 		}
-		
-		/* Sigue comprobando lo siguiente:
-		 *  1. equals() devuelve false cuando el valor de alguno de los componentes de los 
-		 *     Coordinate es distinto
-		 *  2. equals() devuelve true cuando se compara un objeto Coordinate consigo mismo
-		 *  3. equals() devuelve true cuando comparo dos objetos Coordinate distintos
-		 *     y los valores de sus componentes respectivos son iguales.
-		 */
-		//fail ("Completa el test equals()");
 	}
+	
+	//TODO
+	/**
+	 * Testsubtract 2 dand 3 D.
+	 */
+	/* Comprueba la correcta resta entre Coordinates de distinta dimensión */
+	@Test
+	public void testsubtract2Dand3D() {
+				
+		assertEquals(cd2.subtract(cd3).toString(), "(-25, -1)");
+		assertEquals(cd3.subtract(cd2).toString(), "(25, 1, -2)");
+		//fail("Realiza el test");
+	}
+
+	//TODO
+	/**
+	 * Test subtract null pointer exception.
+	 */
+	/* Comprueba que al intentar restar a una Coordinate el valor null, se lanza
+	 * la excepción NullPointerException 
+	 */
+	@Test(expected=NullPointerException.class)
+	public void testSubtractNullPointerException() {
+		
+		cd2.subtract(null);
+		cd3.subtract(null);
+		//fail("Realiza el test");
+	}
+
 
 }

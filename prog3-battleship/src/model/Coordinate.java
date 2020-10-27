@@ -4,7 +4,9 @@ package model;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Objects;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -27,12 +29,12 @@ public abstract class Coordinate
     protected void set(int component, int value)
     {
    
-	        if (component>=0 && component<2) 
+	        if (component>=0 && component<3) 
 	        {
 	            components[component] = value;
 	        }
 	         else
-	            System.err.println("Error in Coordinate.set, component " + component + " is out of range");
+	            throw new IllegalArgumentException();
     	
     
     }
@@ -41,8 +43,7 @@ public abstract class Coordinate
 	/**
 	 * Instantiates a new coordinate.
 	 *
-	 * @param x the x
-	 * @param y the y
+	 * @param dim the dim
 	 */
 	protected Coordinate(int dim)
 	{
@@ -58,10 +59,8 @@ public abstract class Coordinate
 	 */
 	protected Coordinate(Coordinate c)
 	{
-        components = new int[2];
+        components = c.copy().components;
          
-        for (int i=0;i<components.length;i++)
-           this.set(i, c.get(i));
     }
 
 
@@ -73,14 +72,13 @@ public abstract class Coordinate
 	 */
 	public int get(int component)
 	{
-        if (component>=0 && component<2) 
+        if (component>=0 && component<components.length) 
          {
             return components[component];
          }
          else
-            System.err.println("Error in Coordinate.get, component " + component + " is out of range");
+        	 throw new IllegalArgumentException();
       
-         return -1;
     }
 	
 
@@ -130,6 +128,8 @@ public abstract class Coordinate
 	{
         Coordinate new_c = copy();
         
+        Objects.requireNonNull(c);
+        
         for (int i=0; i<this.components.length; i++) 
         {
         	if(i<c.components.length)
@@ -151,10 +151,15 @@ public abstract class Coordinate
 	public final Coordinate subtract(Coordinate c)
 	{
         Coordinate new_c = copy();
+     
+        Objects.requireNonNull(c);
         
-        for (int i=0; i<2; i++)
-           new_c.set(i, new_c.get(i) - c.get(i));
-                     
+        for (int i=0; i<this.components.length; i++)
+        	if(i<c.components.length)
+        	{
+                new_c.set(i, new_c.get(i) - c.get(i));
+        	}
+   
         return new_c; 
     }
 	

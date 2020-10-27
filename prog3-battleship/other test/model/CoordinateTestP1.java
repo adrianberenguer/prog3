@@ -1,36 +1,58 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import model.ship.Coordinate2D;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CoordinateTestP1.
+ */
 public class CoordinateTestP1{
 	
-    List vcoordinates = new ArrayList<int[]>();
+    /** The vcoordinates. */
+    List<int[]> vcoordinates = new ArrayList<int[]>();
+    
+    /** The vcoor. */
     int []vcoor= {0,0,-70,-2,20}; //Para crear coordenadas
+    
+    /** The dim. */
     final int DIM = vcoor.length;
+    
+    /** The lcoor. */
     List<Coordinate> lcoor;
     
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		lcoor = new ArrayList<Coordinate>();
 		//Se crean las Coordinate (0,0),(0,-70), (-70,-2),(-2,20);
 		for (int i=0; i<DIM-1; i++) {
-			lcoor.add(new Coordinate(vcoor[i],vcoor[i+1]));
+			lcoor.add(new Coordinate2D(vcoor[i],vcoor[i+1]));
 		}
 		
 	}
 
+	/**
+	 * Test hash code.
+	 */
 	@Test
 	public void testHashCode() {
 		Coordinate c1 = lcoor.get(2);
-		Coordinate c2 = new Coordinate(c1);
+		Coordinate c2 = new Coordinate2D((Coordinate2D)c1);
 		/* Se comprueba que cuando dos Coordinate son iguales, el resultado 
 		 * del hash ha de ser el mismo.
 		 * Si los Coordinate son distintos el hash puede ser igual o no.
@@ -39,6 +61,9 @@ public class CoordinateTestP1{
 		assertEquals (c1.hashCode(), c2.hashCode());
 	}
 
+	/**
+	 * Test coordinate constructor.
+	 */
 	/* Se comprueba que el Constructor funciona bien. Para ello se analiza que 
 	 * las componentes '0' y '1' de cada Coordinate creada en el setUp() son las 
 	 * correctas.
@@ -53,6 +78,9 @@ public class CoordinateTestP1{
 		}
 	}
 
+	/**
+	 * Test coordinate constructor copy.
+	 */
 	/* Se comprueba que el constructor de copia crea una nueva Coordinate con
 	 * los mismos valores que las componentes respectivas del Coordinate copiado.
 	 * Y eso se hace para cada Coordinate creada en setUp();
@@ -61,12 +89,15 @@ public class CoordinateTestP1{
 	public void testCoordinateConstructorCopy() {
 		Coordinate ccopy;
 		for (Coordinate caux: lcoor) {
-			ccopy= new Coordinate(caux);
+			ccopy= new Coordinate2D((Coordinate2D)caux);
 			assertEquals(caux.get(0),ccopy.get(0));
 			assertEquals(caux.get(1),ccopy.get(1));	
 		}
 	}
 
+	/**
+	 * Test get set.
+	 */
 	/* Se comprueba que el método get(int) para cada componente de una Coordinate 
 	 * funciona correctamente.
 	 * Se modifican los valores de las componentes de la Coordinate anterior con 
@@ -84,6 +115,9 @@ public class CoordinateTestP1{
 		assertEquals("x==-11", -11, c.get(1));
 	}
 
+	/**
+	 * Test add.
+	 */
 	/* Se suman las Coordinate creadas en el setUp() y se comprueba, conforme 
 	 * se van sumando, que los valores de sus componentes van tomando los 
 	 * valores correctos y que el Coordinate que devuelve no es el mismo que
@@ -108,6 +142,9 @@ public class CoordinateTestP1{
 		}
 	}
 
+	/**
+	 * Test subtract.
+	 */
 	/* Se van restando las Coordinate creadas en el setUp() y se comprueba, 
 	 * conforme se van restando, que los valores de sus componentes van tomando 
 	 * los valores correctos y que el Coordinate que devuelve no es el mismo que
@@ -132,6 +169,9 @@ public class CoordinateTestP1{
 
 	
 	
+	/**
+	 * Test to string.
+	 */
 	/* Se comprueba, para el método toString(), que las Coordinate creadas en el setUp() 
 	 * tienen el formato correcto.
 	 */
@@ -143,6 +183,9 @@ public class CoordinateTestP1{
 		assertEquals ("(-2, 20)",lcoor.get(3).toString());
 	}
 
+	/**
+	 * Test equals object.
+	 */
 	/* Se toma una Coordinate y se comprueba todas las posibles condiciones bajo 
 	 * las cuales nuestra función equals() devuelve true o false
 	 */
@@ -153,9 +196,9 @@ public class CoordinateTestP1{
 		assertFalse(c.equals(null));
 		assertFalse(c.equals(obj));
 		assertFalse(c.equals(lcoor.get(1)));
-		assertFalse(c.equals(new Coordinate(24, 0)));
+		assertFalse(c.equals(new Coordinate2D(24, 0)));
 		assertTrue (c.equals(c));
-		Coordinate d = new Coordinate (0,0);
+		Coordinate d = new Coordinate2D(0,0);
 		assertTrue((c.equals(d)));
 	}
 

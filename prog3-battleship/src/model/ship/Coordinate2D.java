@@ -4,10 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 import model.Coordinate;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
+/**
+ * The Class Coordinate2D.
+ */
 public class Coordinate2D extends Coordinate
 {
+	
+	/**
+	 * Instantiates a new coordinate 2 D.
+	 *
+	 * @param x the x
+	 * @param y the y
+	 */
 	public Coordinate2D(int x, int y)
 	{
 		super(2);
@@ -16,11 +27,21 @@ public class Coordinate2D extends Coordinate
 		super.set(1, y);
 	}
 	
+	/**
+	 * Instantiates a new coordinate 2 D.
+	 *
+	 * @param c the c
+	 */
 	public Coordinate2D(Coordinate2D c)
 	{
-		
+		super(c);
 	}
 
+	/**
+	 * Adjacent coordinates.
+	 *
+	 * @return the sets the
+	 */
 	public Set<Coordinate> adjacentCoordinates()
 	{
 		Set<Coordinate> adjCoor= new HashSet<Coordinate>();
@@ -39,11 +60,21 @@ public class Coordinate2D extends Coordinate
 		return adjCoor;
 	}
 	
+	/**
+	 * Copy.
+	 *
+	 * @return the coordinate 2 D
+	 */
 	public Coordinate2D copy()
 	{
-		return new Coordinate2D(this);
+		return new Coordinate2D(this.get(0),this.get(1));
 	}
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString()
 	{
         StringBuilder concatenation = new StringBuilder("(");
