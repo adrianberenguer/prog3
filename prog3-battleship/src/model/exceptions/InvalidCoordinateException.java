@@ -2,14 +2,13 @@ package model.exceptions;
 
 import model.Coordinate;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
  * The Class InvalidCoordinateException.
  */
 @SuppressWarnings("serial")
-public class InvalidCoordinateException extends BattleshipException
+public class InvalidCoordinateException extends CoordinateException
 {
 	
 	/**
@@ -28,7 +27,7 @@ public class InvalidCoordinateException extends BattleshipException
 	 */
 	public String getMessage() 
 	{
-		return "Error with the coordinate, the coordinate is out of the board size"+'\n';
+		return "Error with the coordinate, the coordinate " + this.c +" is out of the board size"+'\n';
 	}
 	
 }

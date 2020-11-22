@@ -6,7 +6,6 @@ import model.Board;
 import model.Coordinate;
 import model.CoordinateFactory;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

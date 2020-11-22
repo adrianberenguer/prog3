@@ -2,14 +2,13 @@ package model.exceptions;
 
 import model.Coordinate;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
  * The Class NextToAnotherCraftException.
  */
 @SuppressWarnings("serial")
-public class NextToAnotherCraftException extends BattleshipException
+public class NextToAnotherCraftException extends CoordinateException
 {
 	
 	/**
@@ -27,7 +26,7 @@ public class NextToAnotherCraftException extends BattleshipException
 	 * @return the message
 	 */
 	public String getMessage() {
-		return "Error with the coordinate, the coordinate to be occupied is next to another one occupied by another craft"+'\n';
+		return "Error with the coordinate, the coordinate " + this.c + " to be occupied is next to another one occupied by another craft"+'\n';
 	}
 	
 }

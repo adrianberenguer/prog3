@@ -3,9 +3,9 @@ package model.aircraft;
 import java.util.HashSet;
 import java.util.Set;
 import model.Coordinate;
+import model.CoordinateFactory;
 import model.ship.Coordinate2D;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -57,7 +57,11 @@ public class Coordinate3D extends Coordinate
 				{
 					if((i==0 && j==0 && k==0) == false)
 					{
-						adjCoor.add(this.add(new Coordinate3D(i,j,k)));
+						//int[] cords = new int[] {i,j};
+						//Coordinate c = CoordinateFactory.createCoordinate(cords);
+						//adjCoor.add(this.add(c));
+						//adjCoor.add(this.add(new Coordinate3D(i,j,k)));
+						adjCoor.add(this.add(CoordinateFactory.createCoordinate(i,j,k)));
 					}
 				}
 			}

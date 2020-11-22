@@ -2,7 +2,6 @@ package model.aircraft;
 
 import model.Orientation;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

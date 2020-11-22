@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Objects;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -31,7 +30,14 @@ public abstract class Coordinate
    
 	        if (component>=0 && component<3) 
 	        {
-	            components[component] = value;
+	        	try 
+	        	{
+	        		components[component] = value;
+	        	}
+	        	catch(Exception e)
+	        	{
+	        		 throw new IllegalArgumentException();
+	        	}
 	        }
 	         else
 	            throw new IllegalArgumentException();
@@ -143,7 +149,7 @@ public abstract class Coordinate
 	
 
 	/**
-	 * Substract.
+	 * Subtract.
 	 *
 	 * @param c the c
 	 * @return the coordinate

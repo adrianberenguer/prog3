@@ -7,7 +7,6 @@ import model.aircraft.Coordinate3D;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.ship.Coordinate2D;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -16,7 +15,7 @@ import model.ship.Coordinate2D;
 public abstract class Craft {
 
 	/** The Constant BOUNDING_SQUARE_SIZE. */
-	private static final int BOUNDING_SQUARE_SIZE = 5;
+	public static final int BOUNDING_SQUARE_SIZE = 5;
 	/** The Constant HIT_VALUE. */
 	private static final int HIT_VALUE = -1;
 	/** The Constant CRAFT_VALUE. */
@@ -164,12 +163,14 @@ public abstract class Craft {
 						
 						if(position.getClass().getName()=="model.ship.Coordinate2D")
 						{
-							pos = new Coordinate2D(column,row);
+							//pos = new Coordinate2D(column,row);
+							pos = CoordinateFactory.createCoordinate(column,row);
 							absolutePos.add(pos.add(position));
 						}
 						else
 						{
-							pos = new Coordinate3D(column,row,0);
+							//pos = new Coordinate3D(column,row,0);
+							pos = CoordinateFactory.createCoordinate(column,row,0);
 							absolutePos.add(pos.add(position));
 						}
 

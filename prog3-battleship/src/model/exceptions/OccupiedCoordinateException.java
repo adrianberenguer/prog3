@@ -2,14 +2,13 @@ package model.exceptions;
 
 import model.Coordinate;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
  * The Class OccupiedCoordinateException.
  */
 @SuppressWarnings("serial")
-public class OccupiedCoordinateException extends BattleshipException
+public class OccupiedCoordinateException extends CoordinateException
 {
 
 	/**
@@ -27,7 +26,7 @@ public class OccupiedCoordinateException extends BattleshipException
 	 * @return the message
 	 */
 	public String getMessage() {
-		return "Error with the coordinate, the coordinate is already occupied by another craft"+ '\n';
+		return "Error with the coordinate, the coordinate " +  this.c + " is already occupied by another craft"+ '\n';
 	}
 	
 }

@@ -11,7 +11,6 @@ import model.CoordinateFactory;
 import java.util.HashSet;
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
