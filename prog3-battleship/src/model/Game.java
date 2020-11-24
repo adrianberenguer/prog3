@@ -109,15 +109,20 @@ public class Game
 		if(nextToShoot == 1)
 		{
 			try {
-				if (player1.nextShoot(board2) == null) {
+				if (player1.nextShoot(board2) == null) 
+				{
 					return false;
 				}
 				nextToShoot = 2;
 				shootCounter++;
 				return true;
-			} catch (InvalidCoordinateException | BattleshipIOException e) {
+			} 
+			catch (InvalidCoordinateException | BattleshipIOException e) 
+			{
 				throw new RuntimeException();
-			} catch (CoordinateAlreadyHitException e) {
+			} 
+			catch (CoordinateAlreadyHitException e) 
+			{
 				nextToShoot = 2;
 				shootCounter++;
 				System.out.print("Action by "+ player1.getName() + e.getMessage() );
@@ -127,15 +132,20 @@ public class Game
 		if(nextToShoot == 2)
 		{
 			try {
-				if (player2.nextShoot(board1) == null) {
+				if (player2.nextShoot(board1) == null) 
+				{
 					return false;
 				}
 				nextToShoot = 1;
 				shootCounter++;
 				return true;
-			} catch (InvalidCoordinateException | BattleshipIOException e) {
+			} 
+			catch (InvalidCoordinateException | BattleshipIOException e) 
+			{
 				throw new RuntimeException();
-			} catch (CoordinateAlreadyHitException e) {
+			} 
+			catch (CoordinateAlreadyHitException e) 
+			{
 				nextToShoot = 1;
 				shootCounter++;
 				System.out.print("Action by "+ player2.getName() + e.getMessage() );
