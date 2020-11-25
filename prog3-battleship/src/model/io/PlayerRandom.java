@@ -90,7 +90,7 @@ public class PlayerRandom implements IPlayer
 		if(b.getClass().getName() == "model.aircraft.Board3D")
 		{
 			
-			for(int x=0;x<3;x++) //for de 3 porque hay tres aircrafts
+			for(int x=0;x<6;x++) //for de 6 porque hay 4 crafts y tres aircrafts
 			{
 				int r = random.nextInt(4);
 				Orientation o = null;
@@ -103,9 +103,14 @@ public class PlayerRandom implements IPlayer
 				}
 				switch(x)
 				{
-					case 0: craft = new Bomber(o);break;
-					case 1: craft = new Fighter(o);break;
-					case 2: craft = new Transport(o);break;
+					case 0: craft = new Battleship(o);break;
+					case 1: craft = new Carrier(o);break;
+					case 2: craft = new Cruiser(o);break;
+					case 3: craft = new Destroyer(o);break;//crafts
+					case 4: craft = new Bomber(o);break;
+					case 5: craft = new Fighter(o);break;
+					case 6: craft = new Transport(o);break;//aircrafts
+					
 				}
 				comprobar = false;
 				for(int i = 0; i< 100 && !comprobar; i++)
