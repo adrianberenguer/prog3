@@ -51,9 +51,9 @@ public class PlayerRandom implements IPlayer
 		{
 			for(int x=0; x<4; x++) //for de 4 porque hay 4 ships 
 			{
-				int r = genRandomInt(0,4);
+				// int r = genRandomInt(0,4); no hacerlo asi si no con nextInt 
 				Orientation o = null;
-				switch(r) //random orientation
+				switch(random.nextInt(4)) //random orientation
 				{
 					case 0: o = Orientation.NORTH;break;
 					case 1: o = Orientation.EAST;break;
