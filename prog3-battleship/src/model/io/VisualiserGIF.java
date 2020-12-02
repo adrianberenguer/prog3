@@ -10,13 +10,26 @@ import model.exceptions.io.BattleshipIOException;
 import model.io.gif.AnimatedGIF;
 import model.io.gif.FrameGIF;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
+/**
+ * The Class VisualiserGIF.
+ */
 public class VisualiserGIF implements IVisualiser
 {
+	
+	/** The agif. */
 	private AnimatedGIF agif;
+	
+	/** The game. */
 	private Game game;
 	
+	/**
+	 * Instantiates a new visualiser GIF.
+	 *
+	 * @param g the g
+	 */
 	public VisualiserGIF(Game g)
 	{
 		Objects.requireNonNull(g);
@@ -24,6 +37,9 @@ public class VisualiserGIF implements IVisualiser
 		this.agif = new AnimatedGIF();
 	}
 	
+	/**
+	 * Show.
+	 */
 	public void show()  
 	{
 		Board b1 = null,b2 = null;
@@ -42,8 +58,6 @@ public class VisualiserGIF implements IVisualiser
 		try
 		{
 			FrameGIF frame = null;
-			
-			
 			
 			if(b1.getClass().getName() == "model.aircraft.Board3D") //board3d	
 			{	
@@ -201,6 +215,9 @@ public class VisualiserGIF implements IVisualiser
 		
 	}
 
+	/**
+	 * Close.
+	 */
 	public void close()  
 	{	
 		try

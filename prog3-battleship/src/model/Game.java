@@ -11,17 +11,39 @@ import model.exceptions.io.BattleshipIOException;
 import model.io.IPlayer;
 import model.io.IVisualiser;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 
+/**
+ * The Class Game.
+ */
 public class Game
 {
+	
+	/** The game started. */
 	private boolean gameStarted;
+	
+	/** The next to shoot. */
 	private int nextToShoot;
+	
+	/** The shoot counter. */
 	private int shootCounter;
+	
+	/** The player 2. */
 	private IPlayer player1, player2;
+	
+	/** The board 2. */
 	private Board board1, board2;
 	
+	/**
+	 * Instantiates a new game.
+	 *
+	 * @param b1 the b 1
+	 * @param b2 the b 2
+	 * @param p1 the p 1
+	 * @param p2 the p 2
+	 */
 	public Game(Board b1, Board b2, IPlayer p1, IPlayer p2)
 	{
 		Objects.requireNonNull(p1);
@@ -35,16 +57,31 @@ public class Game
 		gameStarted = false;
 	}
 	
+	/**
+	 * Gets the player 1.
+	 *
+	 * @return the player 1
+	 */
 	public IPlayer getPlayer1()
 	{
 		return player1;
 	}
 	
+	/**
+	 * Gets the player 2.
+	 *
+	 * @return the player 2
+	 */
 	public IPlayer getPlayer2()
 	{
 		return player2;
 	}
 	
+	/**
+	 * Gets the player last shoot.
+	 *
+	 * @return the player last shoot
+	 */
 	public IPlayer getPlayerLastShoot()
 	{
 		if(nextToShoot == 1)
@@ -59,16 +96,29 @@ public class Game
 		return null;
 	}
 	
+	/**
+	 * Gets the board 1.
+	 *
+	 * @return the board 1
+	 */
 	public Board getBoard1()
 	{
 		return board1;
 	}
 	
+	/**
+	 * Gets the board 2.
+	 *
+	 * @return the board 2
+	 */
 	public Board getBoard2()
 	{
 		return board2;
 	}
 	
+	/**
+	 * Start.
+	 */
 	public void start() 
 	{
 		gameStarted = true;
@@ -86,6 +136,11 @@ public class Game
 		
 	}
 	
+	/**
+	 * Game ended.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean gameEnded()
 	{
 		
@@ -104,6 +159,11 @@ public class Game
 		return false;
 	}
 	
+	/**
+	 * Play next.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean playNext() 
 	{
 		if(nextToShoot == 1)
@@ -156,6 +216,11 @@ public class Game
 		return false;
 	}
 	
+	/**
+	 * Play game.
+	 *
+	 * @param visualiser the visualiser
+	 */
 	public void playGame(IVisualiser visualiser)  
 	{
 		
@@ -178,6 +243,11 @@ public class Game
 		
 	}
 	
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	public String toString()
 	{
 		StringBuilder partida = new StringBuilder();

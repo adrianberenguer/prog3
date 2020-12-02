@@ -19,11 +19,24 @@ import model.ship.Ship;
 
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
+/**
+ * The Class PlayerFile.
+ */
 public class PlayerFile implements IPlayer
 {
+	
+	/** The br. */
 	private BufferedReader br; 
+	
+	/** The name. */
 	private String name;
 	
+	/**
+	 * Instantiates a new player file.
+	 *
+	 * @param name the name
+	 * @param reader the reader
+	 */
 	public PlayerFile(String name, BufferedReader reader)
 	{
 		this.name=name;
@@ -39,11 +52,25 @@ public class PlayerFile implements IPlayer
 		
 	}
 	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName()
 	{
 		return name + " (" + /*"PlayerFile"*/ getClass().getSimpleName() + ")";
 	}
 	
+	/**
+	 * Put crafts.
+	 *
+	 * @param b the b
+	 * @throws BattleshipIOException the battleship IO exception
+	 * @throws InvalidCoordinateException the invalid coordinate exception
+	 * @throws OccupiedCoordinateException the occupied coordinate exception
+	 * @throws NextToAnotherCraftException the next to another craft exception
+	 */
 	public void putCrafts(Board b) throws BattleshipIOException, InvalidCoordinateException, OccupiedCoordinateException, NextToAnotherCraftException
 	{
 		Objects.requireNonNull(b);
@@ -126,6 +153,15 @@ public class PlayerFile implements IPlayer
 					
 	}
 	
+	/**
+	 * Next shoot.
+	 *
+	 * @param b the b
+	 * @return the coordinate
+	 * @throws InvalidCoordinateException the invalid coordinate exception
+	 * @throws CoordinateAlreadyHitException the coordinate already hit exception
+	 * @throws BattleshipIOException the battleship IO exception
+	 */
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException, BattleshipIOException
 	{
 		Objects.requireNonNull(b);

@@ -6,6 +6,7 @@ import model.Coordinate;
 import model.CoordinateFactory;
 import model.aircraft.Coordinate3D;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

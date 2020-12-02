@@ -9,15 +9,22 @@ import com.gif4j.light.GifImage;
 
 import model.exceptions.io.BattleshipIOException;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
- * It generates and animated GIF
+ * It generates and animated GIF.
+ *
  * @author drizo
  */
 public class AnimatedGIF {
+	
+	/** The gif image. */
 	private GifImage gifImage; //GIF4J
 
+	/**
+	 * Instantiates a new animated GIF.
+	 */
 	public AnimatedGIF() {
 		gifImage = new GifImage();
 		gifImage.setDefaultDelay(50);
@@ -25,7 +32,8 @@ public class AnimatedGIF {
 	}
 	
 	/**
-	 * Add a new frame
+	 * Add a new frame.
+	 *
 	 * @param gif the frame to be added
 	 * @throws BattleshipIOException if there is an internal error of the library
 	 */
@@ -38,8 +46,9 @@ public class AnimatedGIF {
 	}
 	
 	/**
-	 * It saves the file
-	 * @param file 
+	 * It saves the file.
+	 *
+	 * @param file the file
 	 * @throws BattleshipIOException if there is an I/O exception
 	 */
 	public void saveFile(File file) throws BattleshipIOException {

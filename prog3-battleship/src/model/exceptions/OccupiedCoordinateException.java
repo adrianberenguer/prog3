@@ -2,6 +2,7 @@ package model.exceptions;
 
 import model.Coordinate;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

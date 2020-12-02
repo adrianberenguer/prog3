@@ -9,8 +9,18 @@ import model.exceptions.io.BattleshipIOException;
 
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
+/**
+ * A factory for creating Player objects.
+ */
 public class PlayerFactory
 {
+	
+	/**
+	 * Checks if is long.
+	 *
+	 * @param s the s
+	 * @return true, if is long
+	 */
 	private static boolean isLong(String s)
 	{
 		try
@@ -25,6 +35,14 @@ public class PlayerFactory
 		return true;
 	}
 	
+	/**
+	 * Creates a new Player object.
+	 *
+	 * @param name the name
+	 * @param s the s
+	 * @return the i player
+	 * @throws BattleshipIOException the battleship IO exception
+	 */
 	public static IPlayer createPlayer(String name, String s) throws BattleshipIOException
 	{
 		Objects.requireNonNull(s);

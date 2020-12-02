@@ -6,6 +6,7 @@ import model.Coordinate;
 import model.CoordinateFactory;
 import model.ship.Coordinate2D;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

@@ -23,11 +23,24 @@ import model.ship.Destroyer;
 
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
+/**
+ * The Class PlayerRandom.
+ */
 public class PlayerRandom implements IPlayer
 {
+	
+	/** The random. */
 	private Random random;
+	
+	/** The name. */
 	private String name;
 	
+	/**
+	 * Instantiates a new player random.
+	 *
+	 * @param name the name
+	 * @param seed the seed
+	 */
 	public PlayerRandom(String name, long seed)
 	{
 		this.name = name;
@@ -36,11 +49,21 @@ public class PlayerRandom implements IPlayer
 		//int r = random.nextInt(100);
 	}
 	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName()
 	{
 		return name + " (" + /*"PlayerFile"*/ getClass().getSimpleName() + ")";
 	}
 	
+	/**
+	 * Put crafts.
+	 *
+	 * @param b the b
+	 */
 	public void putCrafts(Board b) 
 	{
 		Coordinate c = null;
@@ -131,6 +154,14 @@ public class PlayerRandom implements IPlayer
 		
 	}
 	
+	/**
+	 * Next shoot.
+	 *
+	 * @param b the b
+	 * @return the coordinate
+	 * @throws InvalidCoordinateException the invalid coordinate exception
+	 * @throws CoordinateAlreadyHitException the coordinate already hit exception
+	 */
 	public Coordinate nextShoot(Board b) throws InvalidCoordinateException, CoordinateAlreadyHitException
 	{
 		Objects.requireNonNull(b);	
@@ -142,11 +173,25 @@ public class PlayerRandom implements IPlayer
 		return c;
 	}
 	
+	/**
+	 * Gen random int.
+	 *
+	 * @param min the min
+	 * @param max the max
+	 * @return the int
+	 */
 	private int genRandomInt(int min, int max)
 	{
 		return random.nextInt(max-min)+min;
 	}
 	
+	/**
+	 * Gen random coordinate.
+	 *
+	 * @param b the b
+	 * @param offset the offset
+	 * @return the coordinate
+	 */
 	private Coordinate genRandomCoordinate(Board b, int offset)
 	{
 		Coordinate c = null;
