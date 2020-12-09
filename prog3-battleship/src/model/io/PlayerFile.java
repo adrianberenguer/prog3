@@ -88,13 +88,21 @@ public class PlayerFile implements IPlayer
 						
 				if(linesOut[0].equals("put"))
 				{
+					
 					if(linesOut.length<5)
 					{
 						throw new BattleshipIOException("It is needed one more parameter"+ '\n');
 					}
 					else if(linesOut.length==5)
 					{
-						c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[3]),Integer.parseInt(linesOut[4]));
+						try
+						{
+							c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[3]),Integer.parseInt(linesOut[4]));
+						}
+						catch(Exception e)
+						{
+							throw new BattleshipIOException("The coordinate couldnt be created with parseInt");
+						}
 								
 						for(Orientation orientation: Orientation.values())
 						{
@@ -112,8 +120,17 @@ public class PlayerFile implements IPlayer
 					}
 					else if(linesOut.length==6)
 					{
+						
 						comp = false;
-						c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[3]),Integer.parseInt(linesOut[4]),Integer.parseInt(linesOut[5]));
+							
+						try
+						{
+							c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[3]),Integer.parseInt(linesOut[4]),Integer.parseInt(linesOut[5]));
+						}
+						catch(Exception e)
+						{
+							throw new BattleshipIOException("The coordinate couldnt be created with parseInt");
+						}
 							
 						for(Orientation orientation: Orientation.values())
 						{
@@ -122,12 +139,12 @@ public class PlayerFile implements IPlayer
 								craft = CraftFactory.createCraft(linesOut[1],Orientation.valueOf(linesOut[2]));
 								b.addCraft(craft, c);
 								comp = true;
-							}
-							if(!comp)
-							{
-								throw new BattleshipIOException("Error in the orientation " + linesOut[2] + ", that is not an option"+ '\n');
-							}					
+							}				
 						}
+						if(!comp)
+						{
+							throw new BattleshipIOException("Error in the orientation " + linesOut[2] + ", that is not an option"+ '\n');
+						}	
 								
 					}
 					else 
@@ -172,7 +189,7 @@ public class PlayerFile implements IPlayer
 			while((line = br.readLine()) != null)
 			{
 				String[] linesOut =line.split("\\s+");
-				System.out.println(line);
+				
 				
 				if (line.contains("exit") || line == null) {
 					return null;
@@ -207,8 +224,7 @@ public class PlayerFile implements IPlayer
 				}
 				
 			}
-		} catch (NumberFormatException | InvalidCoordinateException | CoordinateAlreadyHitException
-				| BattleshipIOException | IOException e) {
+		} catch (NumberFormatException |IOException e) {
 			throw new BattleshipIOException("Error in the commands" + '\n');
 		}
 			

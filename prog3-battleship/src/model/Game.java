@@ -84,13 +84,20 @@ public class Game
 	 */
 	public IPlayer getPlayerLastShoot()
 	{
-		if(nextToShoot == 1)
+		if(shootCounter >0)
 		{
-			return player2;
+			if(nextToShoot == 1)
+			{
+				return player2;
+			}
+			if(nextToShoot == 2)
+			{
+				return player1;
+			}
 		}
-		if(nextToShoot == 2)
+		else
 		{
-			return player1;
+			return null;
 		}
 		
 		return null;
@@ -121,6 +128,7 @@ public class Game
 	 */
 	public void start() 
 	{
+		
 		gameStarted = true;
 		shootCounter = 0;
 		nextToShoot = 1;

@@ -113,7 +113,7 @@ public class PlayerRandom implements IPlayer
 		if(b.getClass().getName() == "model.aircraft.Board3D")
 		{
 			
-			for(int x=0;x<6;x++) //for de 6 porque hay 4 crafts y tres aircrafts
+			for(int x=0;x<7;x++) //for de 6 porque hay 4 crafts y tres aircrafts
 			{
 				int r = random.nextInt(4);
 				Orientation o = null;
