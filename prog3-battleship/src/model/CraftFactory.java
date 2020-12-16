@@ -1,5 +1,8 @@
 package model;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 import model.aircraft.Bomber;
@@ -26,31 +29,48 @@ public class CraftFactory
 	 */
 	public static Craft createCraft(String type, Orientation orientation)
 	{
+		String pack = "model."+type;
+		Class<?> craft = null;
 		
-		switch(type)
+		try
 		{
-			case "Bomber":
-				return new Bomber(orientation);
-			case "Fighter":
-				return new Fighter(orientation);
-				
-			case "Transport":
-				return new Transport(orientation);
-			
-			case "Battleship":
-				return new Battleship(orientation);
-			
-			case "Carrier":
-				return new Carrier(orientation);
-			
-			case "Cruiser":
-				return new Cruiser(orientation);
-			
-			case "Destroyer":
-				return new Destroyer(orientation);
-			
-			default: return null;
+			craft = Class.forName(pack);
+			Class<?>[] params = new Class[]{Orientation.class};
+			Constructor<?> cons = craft.getConstructor(params);
+			Object[] args = new Object[]{orientation};
+			Craft c = (Craft) cons.newInstance(args);
+			return c;
 		}
+		catch(InvocationTargetException | NoSuchMethodException | InstantiationException | ClassNotFoundException | SecurityException | IllegalAccessException | NoClassDefFoundError e )
+		{
+			return null;
+		}
+		
 	}
 	
 }
+
+/*switch(type)
+{
+	case "Bomber":
+		return new Bomber(orientation);
+	case "Fighter":
+		return new Fighter(orientation);
+		
+	case "Transport":
+		return new Transport(orientation);
+	
+	case "Battleship":
+		return new Battleship(orientation);
+	
+	case "Carrier":
+		return new Carrier(orientation);
+	
+	case "Cruiser":
+		return new Cruiser(orientation);
+	
+	case "Destroyer":
+		return new Destroyer(orientation);
+	
+	default: return null;
+}*/

@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import model.exceptions.io.BattleshipIOException;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

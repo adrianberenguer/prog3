@@ -1,26 +1,26 @@
 package model.io;
 
-import java.io.BufferedReader;
 import java.util.Objects;
 import java.util.Random;
 
 import model.Board;
+import model.CellStatus;
 import model.Coordinate;
 import model.CoordinateFactory;
 import model.Craft;
+import model.CraftFactory;
 import model.Orientation;
 import model.aircraft.Bomber;
 import model.aircraft.Fighter;
 import model.aircraft.Transport;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
-import model.exceptions.NextToAnotherCraftException;
-import model.exceptions.OccupiedCoordinateException;
 import model.ship.Battleship;
 import model.ship.Carrier;
 import model.ship.Cruiser;
 import model.ship.Destroyer;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -28,6 +28,9 @@ import model.ship.Destroyer;
  */
 public class PlayerRandom implements IPlayer
 {
+	
+	/** The last shot status. */
+	private CellStatus lastShotStatus;
 	
 	/** The random. */
 	private Random random;
@@ -47,6 +50,16 @@ public class PlayerRandom implements IPlayer
 		Random rand = new Random(seed);
 		this.random = rand;
 		//int r = random.nextInt(100);
+	}
+	
+	/**
+	 * Gets the last shot status.
+	 *
+	 * @return the last shot status
+	 */
+	public CellStatus getLastShotStatus()
+	{
+		return lastShotStatus;
 	}
 	
 	/**
@@ -85,10 +98,15 @@ public class PlayerRandom implements IPlayer
 				}
 				switch(x)
 				{
-					case 0: craft = new Battleship(o);break;
+				    case 0: craft = CraftFactory.createCraft("ship.Battleship", o);break;
+				    case 1: craft = CraftFactory.createCraft("ship.Carrier", o);break;
+					case 2: craft = CraftFactory.createCraft("ship.Cruiser", o);break;
+					case 3: craft = CraftFactory.createCraft("ship.Destroyer", o);break;
+					
+				    /*case 0: craft = new Battleship(o);break;
 					case 1: craft = new Carrier(o);break;
 					case 2: craft = new Cruiser(o);break;
-					case 3: craft = new Destroyer(o);break;
+					case 3: craft = new Destroyer(o);break;*/
 				}
 				comprobar = false;
 				for(int i=0;i<100 && !comprobar;i++)
@@ -126,13 +144,21 @@ public class PlayerRandom implements IPlayer
 				}
 				switch(x)
 				{
-					case 0: craft = new Battleship(o);break;
+			    	case 0: craft = CraftFactory.createCraft("ship.Battleship", o);break;
+			    	case 1: craft = CraftFactory.createCraft("ship.Carrier", o);break;
+			    	case 2: craft = CraftFactory.createCraft("ship.Cruiser", o);break;
+			    	case 3: craft = CraftFactory.createCraft("ship.Destroyer", o);break;//ships
+			    	case 4: craft = CraftFactory.createCraft("aircraft.Bomber", o);break;
+			    	case 5: craft = CraftFactory.createCraft("aircraft.Fighter", o);break;
+			    	case 6: craft = CraftFactory.createCraft("aircraft.Transport", o);break;//aircrafts
+				
+					/*case 0: craft = new Battleship(o);break;
 					case 1: craft = new Carrier(o);break;
 					case 2: craft = new Cruiser(o);break;
 					case 3: craft = new Destroyer(o);break;//crafts
 					case 4: craft = new Bomber(o);break;
 					case 5: craft = new Fighter(o);break;
-					case 6: craft = new Transport(o);break;//aircrafts
+					case 6: craft = new Transport(o);break;//aircrafts*/
 					
 				}
 				comprobar = false;
@@ -168,7 +194,9 @@ public class PlayerRandom implements IPlayer
 		Coordinate c = null;
 		
 		c = genRandomCoordinate(b,0);
-		b.hit(c);
+		//b.hit(c);
+		
+		lastShotStatus = b.hit(c);
 		
 		return c;
 	}

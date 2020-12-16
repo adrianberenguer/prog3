@@ -3,6 +3,7 @@ package model.io;
 import java.io.IOException;
 
 import model.Board;
+import model.CellStatus;
 import model.Coordinate;
 import model.exceptions.CoordinateAlreadyHitException;
 import model.exceptions.InvalidCoordinateException;
@@ -25,6 +26,13 @@ public interface IPlayer
 	 * @return the name
 	 */
 	public String getName();
+	
+	/**
+	 * Gets the last shot status.
+	 *
+	 * @return the last shot status
+	 */
+	public CellStatus getLastShotStatus();
 	
 	/**
 	 * Put crafts.

@@ -46,6 +46,13 @@ public abstract class Craft {
 		name = n;
 		position = null;
 	}
+	
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
+	public abstract int getValue();
 
 	/**
 	 * Gets the position.

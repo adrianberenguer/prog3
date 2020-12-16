@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import model.Board;
+import model.CellStatus;
 import model.Coordinate;
 import model.CoordinateFactory;
 import model.Craft;
@@ -15,8 +16,8 @@ import model.exceptions.InvalidCoordinateException;
 import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
-import model.ship.Ship;
 
+// TODO: Auto-generated Javadoc
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -24,6 +25,9 @@ import model.ship.Ship;
  */
 public class PlayerFile implements IPlayer
 {
+	
+	/** The last shot status. */
+	private CellStatus lastShotStatus;
 	
 	/** The br. */
 	private BufferedReader br; 
@@ -50,6 +54,16 @@ public class PlayerFile implements IPlayer
 			this.br=reader;
 		}
 		
+	}
+	
+	/**
+	 * Gets the last shot status.
+	 *
+	 * @return the last shot status
+	 */
+	public CellStatus getLastShotStatus()
+	{
+		return lastShotStatus;
 	}
 	
 	/**
@@ -80,6 +94,7 @@ public class PlayerFile implements IPlayer
 			while((line = br.readLine()) != null && !(line.contains("endput")) && !(line.contains("exit")))
 			{
 				Craft craft;
+				
 				
 				String[] linesOut =line.split("\\s+");
 				Coordinate c;
@@ -184,6 +199,7 @@ public class PlayerFile implements IPlayer
 		Objects.requireNonNull(b);
 		String line;
 		Coordinate c = null;
+		lastShotStatus = null;
 		
 		try {
 			while((line = br.readLine()) != null)
@@ -192,6 +208,7 @@ public class PlayerFile implements IPlayer
 				
 				
 				if (line.contains("exit") || line == null) {
+					lastShotStatus = null;
 					return null;
 				}
 				
@@ -204,13 +221,16 @@ public class PlayerFile implements IPlayer
 					else if(linesOut.length == 3)
 					{
 						c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[1]),Integer.parseInt(linesOut[2]));
-						b.hit(c);
+						
+						//b.hit(c);
+						lastShotStatus = b.hit(c);
 						return c;
 					}
 					else if(linesOut.length == 4)
 					{
 						c = CoordinateFactory.createCoordinate(Integer.parseInt(linesOut[1]),Integer.parseInt(linesOut[2]), Integer.parseInt(linesOut[3]));
-						b.hit(c);
+						//b.hit(c);
+						lastShotStatus = b.hit(c);
 						return c;
 					}
 					else

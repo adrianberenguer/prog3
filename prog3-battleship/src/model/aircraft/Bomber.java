@@ -41,5 +41,15 @@ public class Bomber extends Aircraft
 			0, 0, 1, 0, 0,
 			0, 0, 1, 1, 0}};
 	}
+
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
+	@Override
+	public int getValue() {
+		return 15;
+	}
 	
 }

@@ -43,5 +43,15 @@ public class Destroyer extends Ship
 			0, 0, 0, 0, 0}}; 
 
 	}
+
+	/**
+	 * Gets the value.
+	 *
+	 * @return the value
+	 */
+	@Override
+	public int getValue() {
+		return 3;
+	}
 	
 }

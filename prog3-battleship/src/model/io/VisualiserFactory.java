@@ -1,5 +1,8 @@
 package model.io;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import model.Game;
 
 // TODO: Auto-generated Javadoc
@@ -20,19 +23,36 @@ public class VisualiserFactory
 	 */
 	public static IVisualiser createVisualiser(String n, Game g)
 	{
+		Object[] arg2 = new Object[]{g};
+		Class<?> pack = null;
+		Constructor<?> cons = null;
 		
-		if(n == "Console")
+		try
 		{
-			VisualiserConsole visualiser = new VisualiserConsole(g);
-			return visualiser;
+			pack = Class.forName("model.io." + n);
+			cons = pack.getConstructor(new Class<?> [] {Game.class});
+			return (IVisualiser)cons.newInstance(arg2);
 		}
-		else if(n == "GIF")
+		catch(ClassNotFoundException | SecurityException | NoSuchMethodException | InvocationTargetException | IllegalAccessException | NoClassDefFoundError | InstantiationException | IllegalArgumentException e)
 		{
-			VisualiserGIF gif = new VisualiserGIF(g);
-			return gif;
+			return null;
 		}
 		
-		return null;
 	}
 	
 }
+
+/*
+if(n == "Console")
+{
+	VisualiserConsole visualiser = new VisualiserConsole(g);
+	return visualiser;
+}
+else if(n == "GIF")
+{
+	VisualiserGIF gif = new VisualiserGIF(g);
+	return gif;
+}
+
+return null;
+*/
