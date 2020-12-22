@@ -29,7 +29,7 @@ public class VisualiserFactory
 		
 		try
 		{
-			pack = Class.forName("model.io." + n);
+			pack = Class.forName("model.io.Visualiser" + n);
 			cons = pack.getConstructor(new Class<?> [] {Game.class});
 			return (IVisualiser)cons.newInstance(arg2);
 		}
