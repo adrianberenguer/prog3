@@ -55,7 +55,7 @@ public class Ranking<ScoreType extends Score<?>>
 	 */
 	public ScoreType getWinner() throws EmptyRankingException
 	{
-		if(scoreSet == null)
+		if(scoreSet.isEmpty())
 		{
 			throw new EmptyRankingException();
 		}

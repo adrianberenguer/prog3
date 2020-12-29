@@ -20,7 +20,7 @@ import model.ship.Carrier;
 import model.ship.Cruiser;
 import model.ship.Destroyer;
 
-// TODO: Auto-generated Javadoc
+
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -47,6 +47,7 @@ public class PlayerRandom implements IPlayer
 	public PlayerRandom(String name, long seed)
 	{
 		this.name = name;
+		lastShotStatus = null;
 		Random rand = new Random(seed);
 		this.random = rand;
 		//int r = random.nextInt(100);
@@ -69,7 +70,7 @@ public class PlayerRandom implements IPlayer
 	 */
 	public String getName()
 	{
-		return name + " (" + /*"PlayerFile"*/ getClass().getSimpleName() + ")";
+		return name + " (" + getClass().getSimpleName() + ")";
 	}
 	
 	/**

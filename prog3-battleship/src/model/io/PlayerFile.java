@@ -17,7 +17,7 @@ import model.exceptions.NextToAnotherCraftException;
 import model.exceptions.OccupiedCoordinateException;
 import model.exceptions.io.BattleshipIOException;
 
-// TODO: Auto-generated Javadoc
+
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
@@ -44,7 +44,7 @@ public class PlayerFile implements IPlayer
 	public PlayerFile(String name, BufferedReader reader)
 	{
 		this.name=name;
-		
+		lastShotStatus = null;
 		if(reader==null)
 		{
 			throw new NullPointerException();

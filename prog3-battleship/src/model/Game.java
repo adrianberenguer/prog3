@@ -85,11 +85,11 @@ public class Game
 	{
 		StringBuilder info = new StringBuilder();
 		
-		info.append("Player 1\n" + "HitScore: " + player1.getName() + ": " + hitScore1 + '\n');
-		info.append("CraftScore: " + player1.getName() + ": " + craftScore1 + '\n');
+		info.append("Player 1\n" + "HitScore: " /*+ player1.getName() + ": "*/ + hitScore1 + '\n');
+		info.append("CraftScore: " /*+ player1.getName() + ": "*/ + craftScore1 + '\n');
 		info.append("--------------\n");
-		info.append("Player 2\n" + "HitScore: " + player2.getName() + ": " + hitScore2 + '\n');
-		info.append("CraftScore: " + player2.getName() + ": " + craftScore2 + '\n');
+		info.append("Player 2\n" + "HitScore: " /*+ player2.getName() + ": "*/ + hitScore2 + '\n');
+		info.append("CraftScore: " /*+ player2.getName() + ": "*/ + craftScore2 );
 		
 		return info.toString();
 	}

@@ -1,5 +1,7 @@
 package model.score;
 
+import java.util.Objects;
+
 import model.io.IPlayer;
 
 // TODO: Auto-generated Javadoc
@@ -26,6 +28,7 @@ public abstract class Score<T> implements Comparable<Score<T>>
 	 */
 	public Score(IPlayer player)
 	{
+		Objects.requireNonNull(player);
 		this.player = player;
 		score = 0;
 	}

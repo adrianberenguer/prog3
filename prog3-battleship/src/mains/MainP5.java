@@ -39,7 +39,7 @@ public class MainP5 {
 			
 			Game game = new Game(b1, b2, player1, player2);
 
-			IVisualiser visualiser = VisualiserFactory.createVisualiser("VisualiserConsole", game);
+			IVisualiser visualiser = VisualiserFactory.createVisualiser("Console", game);
 			
 			game.playGame(visualiser);
 			System.out.println(game.getScoreInfo());

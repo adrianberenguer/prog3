@@ -1,9 +1,11 @@
 package model.score;
 
+import java.util.Objects;
+
 import model.Craft;
 import model.io.IPlayer;
 
-// TODO: Auto-generated Javadoc
+
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**

@@ -3,7 +3,7 @@ package model.score;
 import model.CellStatus;
 import model.io.IPlayer;
 
-// TODO: Auto-generated Javadoc
+
 //@author ADRIÁN BERENGUER AGULLÓ, 74445262N
 
 /**
